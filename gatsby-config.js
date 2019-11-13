@@ -1,12 +1,12 @@
-const path = require('path')
-const config = require('./jamstack-config.js')
+const path = require("path")
+const config = require("./jamstack-config.js")
 
 let APPSYNC_KEY
-if(process.env.APPSYNC_KEY) {
+if (process.env.APPSYNC_KEY) {
   APPSYNC_KEY = process.env.APPSYNC_KEY
 } else {
-  const JSConfig = require('./jamstack-api-key.js')
-  APPSYNC_KEY = JSConfig['aws_appsync_apiKey']
+  const JSConfig = require("./jamstack-api-key.js")
+  APPSYNC_KEY = JSConfig["aws_appsync_apiKey"]
 }
 
 module.exports = {
@@ -20,16 +20,16 @@ module.exports = {
     },
   },
   plugins: [
-    'gatsby-plugin-typescript',
+    "gatsby-plugin-typescript",
     {
-      resolve: 'gatsby-plugin-layout',
+      resolve: "gatsby-plugin-layout",
       options: {
         component: require.resolve(`./src/layouts/baseLayout.js`),
       },
     },
-    'gatsby-plugin-emotion',
+    "gatsby-plugin-emotion",
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
         custom: {
           families: ["EB Garamond"],
@@ -53,8 +53,8 @@ module.exports = {
         fieldName: "appsync",
         url: config.aws_appsync_graphqlEndpoint,
         headers: {
-          'x-api-key': APPSYNC_KEY
-        }
+          "x-api-key": APPSYNC_KEY,
+        },
       },
     },
     {
